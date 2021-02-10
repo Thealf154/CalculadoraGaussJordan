@@ -19,6 +19,7 @@ const procesarMatrizArribaAbajo = (matriz) => {
   for (let i = 0; i < matriz.length; i++) {
     let columna = conseguirColumna(matriz, i);
     let número_escalonado = matriz[i][i];
+    console.log(matriz);
     if (número_escalonado === 1) {
       for (let j = i + 1; j < columna.length; j++) {
         let filaEscalonada = [];
@@ -28,7 +29,6 @@ const procesarMatrizArribaAbajo = (matriz) => {
           filaEscalonada = modificarFila("multiplicar", columna[j], matriz[i]);
         
         matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
-        console.log(matriz);
       }
     } else {
       matriz[i] = modificarFila("dividir", número_escalonado, matriz[i]);
@@ -57,7 +57,8 @@ const modificarFila = (operación, número, fila) => {
         return filaNúmero * número;
         break;
       case "dividir":
-        return filaNúmero / número;
+        let númeroRedondeado = Number((filaNúmero / número).toFixed(2));
+        return númeroRedondeado;
         break;
       default:
         console.log("Error al pasar la función");
