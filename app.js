@@ -19,15 +19,11 @@ const procesarMatrizArribaAbajo = (matriz) => {
   for (let i = 0; i < matriz.length; i++) {
     let columna = conseguirColumna(matriz, i);
     let número_escalonado = matriz[i][i];
-    console.log(matriz);
     if (número_escalonado === 1) {
-      for (let j = i + 1; j < columna.length; j++) {
+      for (let j = i+1; j < columna.length; j++) {
         let filaEscalonada = [];
-        if (columna[j] > 0)
-          filaEscalonada = modificarFila("multiplicar", columna[j] * -1, matriz[i]);
-        else 
-          filaEscalonada = modificarFila("multiplicar", columna[j], matriz[i]);
-        
+        filaEscalonada = modificarFila("multiplicar", columna[j] * -1, matriz[i]);
+        console.log(matriz, columna[j])
         matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
       }
     } else {
@@ -39,7 +35,21 @@ const procesarMatrizArribaAbajo = (matriz) => {
   return matriz;
 };
 
-const procesarMatrizAbajoArriba = (matriz) => {};
+const procesarMatrizAbajoArriba = (matriz) => {
+  for (let i = matriz.length - 1; i != -1; i--) {
+    console.log(matriz);
+    let x = i - 1;
+    let columna = conseguirColumna(matriz, i);
+      for (let j = x; 0 <= j; j--) {
+        let filaEscalonada = [];
+        let valor = columna[j]; 
+        filaEscalonada = modificarFila("multiplicar", valor * -1, matriz[i]);
+        matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
+      }
+    }
+
+  return matriz;
+};
 
 const conseguirColumna = (matriz, número_columna) => {
   let columna = [];
@@ -57,7 +67,7 @@ const modificarFila = (operación, número, fila) => {
         return filaNúmero * número;
         break;
       case "dividir":
-        let númeroRedondeado = Number((filaNúmero / número).toFixed(2));
+        let númeroRedondeado = Number((filaNúmero / número).toFixed(3));
         return númeroRedondeado;
         break;
       default:
@@ -86,7 +96,14 @@ const test = () => {
     [5, 3, 4, 2],
     [1, 1, -1, 1],
   ];
-  let matriz_final = procesarMatrizArribaAbajo(matriz_inicial);
+  /*let matriz_inicial = [
+    [1,2,-3,-1,0],
+    [0,-3,2,6,-8],
+    [-3.-1,3,1,0],
+    [2,3,2,-1,-8]
+  ];*/
+  let matrizIntermedia = procesarMatrizArribaAbajo(matriz_inicial);
+  let matrizFinal = procesarMatrizAbajoArriba(matrizIntermedia);
 };
 
 window.onload = function () {
