@@ -96,12 +96,12 @@ const test = () => {
     [5, 3, 4, 2],
     [1, 1, -1, 1],
   ];
-  /*let matriz_inicial = [
+  matriz_inicial = [
     [1,2,-3,-1,0],
     [0,-3,2,6,-8],
-    [-3.-1,3,1,0],
+    [-3,-1,3,1,0],
     [2,3,2,-1,-8]
-  ];*/
+  ];
   let matrizIntermedia = procesarMatrizArribaAbajo(matriz_inicial);
   let matrizFinal = procesarMatrizAbajoArriba(matrizIntermedia);
 };

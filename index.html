@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./app.js"></script>
-    <title>Calculadora de Gauss-Jordan</title>
-</head>
-<body>
-    <p>Hello</p>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./app.js"></script>
+        <!--Liberías de Bootstrap (para contruir páginas web)-->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <title>Calculadora de Gauss-Jordan</title>
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <a href="#" class="navbar-brand">Calculadora de matrices👨‍💻</a>
+        </nav>
+        <!--Espacio para sacar los valores-->
+        <div class="row">
+            <div class="col-md-6">
+                <div id="cuadro-matriz-original">
+                    <div id="control-matrices">
+                        <p>Ingresa la cantidad de valores</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="cuadro-matriz-calculada"></div>
+            </div>
+        </div>
+    </body>
 </html>
