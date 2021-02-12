@@ -1,27 +1,52 @@
 ///////////////////////////// Mostrar matrices ////////////////////////////////////////////////////////
 //Recoge los datos de la página web y los regresa en una matriz
 const hacer_matriz = () => {
+  let inputs = document.querySelector("#inputs");
+  let arrInputs = inputs.getElementsByClassName("input");
+  let arr = Array.from(arrInputs);
+  let fila = [];
   let matriz = [];
-  return matriz;
+  for (let i = 0; i < n; i++) {
+    matriz[i] = [];
+    for(let j = 0; j < (arrInputs.length / n); j++){
+      matriz[i][j] = Number(arr[0].value);
+      arr.shift();
+    }
+  }
+  return procesarMatrizArribaAbajo(matriz);
 };
 
-const renderizarMatrizCalculada = datos => {
+const acomodarInputs = () => {
+  let inputs = document.querySelector("#inputs");
+  n = Number(document.querySelector(".form-control").value);
+  for (let i = 0; i < n; i++) {
+    let fila = "<div id=fila_";
+    fila += fila + i + ">";
+    for (let j = 0; j < n + 1; j++) {
+      let input = "<input class='input'>";
+      fila += input;
+    }
+    inputs.innerHTML += fila;
+  }
+};
+
+const renderizarMatrizCalculada = (datos) => {
   let matrizResuleta = datos[0];
   let esConsistente = datos[1];
   let mathContainer = document.getElementById("resultado");
   let latexExpression = "\\begin{pmatrix}";
-  matrizResuleta.forEach(fila => {
-    for(let i = 0; i <= fila.length; i++){
-      if(fila.length === i){
+  matrizResuleta.forEach((fila) => {
+    for (let i = 0; i <= fila.length; i++) {
+      if (fila.length === i) {
         latexExpression += "\\\\";
-      } else{
-        latexExpression += (fila[i] + "&");
+      } else {
+        latexExpression += fila[i] + "&";
       }
     }
   });
-  latexExpression += "\\end{pmatrix}"
-  mathContainer.innerHTML = latexExpression; 
-MathJax.typeset()
+  latexExpression += "\\end{pmatrix}";
+  mathContainer.innerHTML = latexExpression;
+  MathJax.typeset();
 };
 
 /*
@@ -75,7 +100,7 @@ const procesarMatrizAbajoArriba = (matriz) => {
     }
   }
 
-  return [matriz, 1]; //1 es para decir que la matriz es consistente
+  return renderizarMatrizCalculada([matriz, 1]); //1 es para decir que la matriz es consistente
 };
 
 const conseguirColumna = (matriz, número_columna) => {
@@ -140,5 +165,8 @@ const test = () => {
 };
 
 window.onload = function () {
-  test();
+  let calcularBoton = document.querySelector("#calcular");
+  calcularBoton.addEventListener("click", hacer_matriz);
+  let seleccionarBoton = document.querySelector("#seleccionar");
+  seleccionarBoton.addEventListener("click", acomodarInputs);
 };
