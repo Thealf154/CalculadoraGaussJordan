@@ -1,7 +1,27 @@
+///////////////////////////// Mostrar matrices ////////////////////////////////////////////////////////
 //Recoge los datos de la página web y los regresa en una matriz
 const hacer_matriz = () => {
   let matriz = [];
   return matriz;
+};
+
+const renderizarMatrizCalculada = datos => {
+  let matrizResuleta = datos[0];
+  let esConsistente = datos[1];
+  let mathContainer = document.getElementById("resultado");
+  let latexExpression = "\\begin{pmatrix}";
+  matrizResuleta.forEach(fila => {
+    for(let i = 0; i <= fila.length; i++){
+      if(fila.length === i){
+        latexExpression += "\\\\";
+      } else{
+        latexExpression += (fila[i] + "&");
+      }
+    }
+  });
+  latexExpression += "\\end{pmatrix}"
+  mathContainer.innerHTML = latexExpression; 
+MathJax.typeset()
 };
 
 /*
@@ -12,7 +32,7 @@ const hacer_matriz = () => {
  *   [1, 2, 3, 18]  -> n fila de números
  * ]
  */
-
+///////////////////////////// Calculadora de matrices ////////////////////////////////////////////////////////
 const procesarMatrizArribaAbajo = (matriz) => {
   //Esta función se encarga de procesar la matriz y repetir operaciones
   //Dependiendo de la cantidad de filas
@@ -20,19 +40,26 @@ const procesarMatrizArribaAbajo = (matriz) => {
     let columna = conseguirColumna(matriz, i);
     let número_escalonado = matriz[i][i];
     if (número_escalonado === 1) {
-      for (let j = i+1; j < columna.length; j++) {
+      for (let j = i + 1; j < columna.length; j++) {
         let filaEscalonada = [];
-        filaEscalonada = modificarFila("multiplicar", columna[j] * -1, matriz[i]);
-        console.log(matriz, columna[j])
+        filaEscalonada = modificarFila(
+          "multiplicar",
+          columna[j] * -1,
+          matriz[i]
+        );
+        console.log(matriz, columna[j]);
         matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
       }
+    } else if (número_escalonado === 0) {
+      console.log("Sistema inconsitente");
+      return [matriz, 0]; //El cero es par decir qu el amatriz es inconsisitente
     } else {
       matriz[i] = modificarFila("dividir", número_escalonado, matriz[i]);
       i--;
     }
   }
 
-  return matriz;
+  return procesarMatrizAbajoArriba(matriz);
 };
 
 const procesarMatrizAbajoArriba = (matriz) => {
@@ -40,15 +67,15 @@ const procesarMatrizAbajoArriba = (matriz) => {
     console.log(matriz);
     let x = i - 1;
     let columna = conseguirColumna(matriz, i);
-      for (let j = x; 0 <= j; j--) {
-        let filaEscalonada = [];
-        let valor = columna[j]; 
-        filaEscalonada = modificarFila("multiplicar", valor * -1, matriz[i]);
-        matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
-      }
+    for (let j = x; 0 <= j; j--) {
+      let filaEscalonada = [];
+      let valor = columna[j];
+      filaEscalonada = modificarFila("multiplicar", valor * -1, matriz[i]);
+      matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
     }
+  }
 
-  return matriz;
+  return [matriz, 1]; //1 es para decir que la matriz es consistente
 };
 
 const conseguirColumna = (matriz, número_columna) => {
@@ -87,23 +114,29 @@ const sumarFilas = (primeraFila, segundaFila) => {
   return sumaDeFilas;
 };
 
-const registrarPasos = () => {};
-
 const test = () => {
   //Matriz de: https://www.superprof.es/apuntes/escolar/matematicas/algebralineal/sistemas/metodo-de-gauss.html
   let matriz_inicial = [
+    //Sistema de 3x3 consistente
     [3, 2, 1, 1],
     [5, 3, 4, 2],
     [1, 1, -1, 1],
   ];
   matriz_inicial = [
-    [1,2,-3,-1,0],
-    [0,-3,2,6,-8],
-    [-3,-1,3,1,0],
-    [2,3,2,-1,-8]
+    //Sistema de 4x4 consistente
+    [1, 2, -3, -1, 0],
+    [0, -3, 2, 6, -8],
+    [-3, -1, 3, 1, 0],
+    [2, 3, 2, -1, -8],
   ];
-  let matrizIntermedia = procesarMatrizArribaAbajo(matriz_inicial);
-  let matrizFinal = procesarMatrizAbajoArriba(matrizIntermedia);
+  /*matriz_inicial = [
+    //Sistema de 3x3 inconsistente
+    [1, 2, 3, 1],
+    [-3, -2, -1, 2],
+    [4, 4, 4, 3],
+  ];*/
+  let matrizFinal = procesarMatrizArribaAbajo(matriz_inicial);
+  renderizarMatrizCalculada(matrizFinal);
 };
 
 window.onload = function () {

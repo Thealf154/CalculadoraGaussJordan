@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="./app.js"></script>
-        <!--Liberías de Bootstrap (para contruir páginas web)-->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-            crossorigin="anonymous"
-        />
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <title>Calculadora de Gauss-Jordan</title>
-    </head>
-    <body>
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <a href="#" class="navbar-brand">Calculadora de matrices👨‍💻</a>
-        </nav>
-        <!--Espacio para sacar los valores-->
-        <div class="row">
-            <div class="col-md-6">
-                <div id="cuadro-matriz-original">
-                    <div id="control-matrices">
-                        <p>Ingresa la cantidad de valores</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div id="cuadro-matriz-calculada"></div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./app.js"></script>
+    <!--Liberías de Bootstrap (para construir páginas web)-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <title>Calculadora de Gauss-Jordan</title>
+  </head>
+  <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <a href="#" class="navbar-brand">Calculadora de matrices👨‍💻</a>
+    </nav>
+    <!--Espacio para sacar los valores-->
+    <div class="row">
+      <div class="col-md-6">
+        <div id="cuadro-matriz-original">
+          <div id="control-matrices">
+            <p>Ingresa la cantidad de valores</p>
+          </div>
         </div>
-    </body>
+      </div>
+      <div class="col-md-6">
+        <div id="cuadro-matriz-calculada">
+          <p id="resultado"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+      </script>
+      <script type="text/javascript" src="../MathJax.js?config=TeX-AMS_HTML-full"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </html>
