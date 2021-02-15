@@ -18,12 +18,13 @@ const hacer_matriz = () => {
 
 const acomodarInputs = () => {
   let inputs = document.querySelector("#inputs");
+  inputs.innerHTML = "";
   n = Number(document.querySelector(".form-control").value);
   for (let i = 0; i < n; i++) {
     let fila = "<div id=fila_";
     fila += fila + i + ">";
     for (let j = 0; j < n + 1; j++) {
-      let input = "<input class='input'>";
+      let input = "<input class='input' value='0'>";
       fila += input;
     }
     inputs.innerHTML += fila;
@@ -31,8 +32,7 @@ const acomodarInputs = () => {
 };
 
 const renderizarMatrizCalculada = (datos) => {
-  let matrizResuleta = datos[0];
-  let esConsistente = datos[1];
+  let matrizResuleta = datos[0]; let esConsistente = datos[1];
   let mathContainer = document.getElementById("resultado");
   let latexExpression = "\\begin{pmatrix}";
   matrizResuleta.forEach((fila) => {

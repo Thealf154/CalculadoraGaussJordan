@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
     <!--Liberías de Bootstrap (para construir páginas web)-->
     <link
       rel="stylesheet"
@@ -34,9 +35,11 @@
       <div class="col-md-6">
         <div id="cuadro-matriz-original">
           <div id="control-matrices">
-            <div class="" id="inputs">
+            <div class="" id="inputs-zone">
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
+                <label for="exampleFormControlSelect1"
+                  >Ingrese el número de filas y presione "Seleccionar"</label
+                >
                 <textarea
                   class="form-control"
                   id="exampleFormControlTextarea1"
@@ -44,12 +47,15 @@
                 ></textarea>
               </div>
             </div>
-            <button type="button" class="btn btn-success" id="calcular">
-              Calcular
-            </button>
-            <button type="button" class="btn btn-success" id="seleccionar">
+            <div id="inputs"></div>
+            <div id="button-container">
+              <button type="button" class="btn btn-success" id="calcular">
+                Calcular
+              </button>
+              <button type="button" class="btn btn-info" id="seleccionar">
                 Seleccionar
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>
