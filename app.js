@@ -99,7 +99,11 @@ const procesarMatrizAbajoArriba = (matriz) => {
       matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
     }
   }
-
+  //Para redondear resultados 
+  for(let i = 0; i < matriz.length; i++){
+    let value = matriz[i][matriz.length];
+    matriz[i][matriz.length] = Number.parseFloat(value).toFixed(1);
+  }
   return renderizarMatrizCalculada([matriz, 1]); //1 es para decir que la matriz es consistente
 };
 
@@ -140,7 +144,6 @@ const sumarFilas = (primeraFila, segundaFila) => {
 };
 
 const test = () => {
-  //Matriz de: https://www.superprof.es/apuntes/escolar/matematicas/algebralineal/sistemas/metodo-de-gauss.html
   let matriz_inicial = [
     //Sistema de 3x3 consistente
     [3, 2, 1, 1],
@@ -154,14 +157,12 @@ const test = () => {
     [-3, -1, 3, 1, 0],
     [2, 3, 2, -1, -8],
   ];
-  /*matriz_inicial = [
+  matriz_inicial = [
     //Sistema de 3x3 inconsistente
     [1, 2, 3, 1],
     [-3, -2, -1, 2],
     [4, 4, 4, 3],
-  ];*/
-  let matrizFinal = procesarMatrizArribaAbajo(matriz_inicial);
-  renderizarMatrizCalculada(matrizFinal);
+  ];
 };
 
 window.onload = function () {
