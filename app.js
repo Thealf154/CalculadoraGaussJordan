@@ -8,7 +8,7 @@ const hacer_matriz = () => {
   let matriz = [];
   for (let i = 0; i < n; i++) {
     matriz[i] = [];
-    for(let j = 0; j < (arrInputs.length / n); j++){
+    for (let j = 0; j < arrInputs.length / n; j++) {
       matriz[i][j] = Number(arr[0].value);
       arr.shift();
     }
@@ -32,7 +32,8 @@ const acomodarInputs = () => {
 };
 
 const renderizarMatrizCalculada = (datos) => {
-  let matrizResuleta = datos[0]; let esConsistente = datos[1];
+  let matrizResuleta = datos[0];
+  let esConsistente = datos[1];
   let mathContainer = document.getElementById("resultado");
   let latexExpression = "\\begin{pmatrix}";
   matrizResuleta.forEach((fila) => {
@@ -99,8 +100,8 @@ const procesarMatrizAbajoArriba = (matriz) => {
       matriz[j] = sumarFilas(filaEscalonada, matriz[j]);
     }
   }
-  //Para redondear resultados 
-  for(let i = 0; i < matriz.length; i++){
+  //Para redondear resultados
+  for (let i = 0; i < matriz.length; i++) {
     let value = matriz[i][matriz.length];
     matriz[i][matriz.length] = Number.parseFloat(value).toFixed(1);
   }
@@ -163,6 +164,19 @@ const test = () => {
     [-3, -2, -1, 2],
     [4, 4, 4, 3],
   ];
+  matriz_inicial = [
+    [-8, 5, -6, 4, 1, -8, 2, -7, 3, -3, 85],
+    [-7, -5, -5, 3, -3, -2, 3, -1, 2, 9, -109],
+    [-3, 5, -4, -2, 2, -1, 4, 7, -6, -7, 201],
+    [-2, -4, 5, 8, -7, -1, 2, -6, -5, -4, -62],
+    [-8, -8, 2, -2, -7, -5, 1, -5, 5, -1, -37],
+    [5, 6, 7, -5, -6, 4, 2, 4, -9, 5, -27],
+    [6, -4, 9, 8, 6, 2, -5, 6, -5, -3, 38],
+    [-3, 5, -6, -2, 8, -4, -3, 4, -8, -1, 258],
+    [-1, 7, -2, -4, -8, 4, -9, -5, -6, -3, 77],
+    [-6, -1, -4, -5, -8, 8, 8, -5, -7, 4, -101],
+  ];
+  procesarMatrizArribaAbajo(matriz_inicial);
 };
 
 window.onload = function () {
@@ -170,4 +184,5 @@ window.onload = function () {
   calcularBoton.addEventListener("click", hacer_matriz);
   let seleccionarBoton = document.querySelector("#seleccionar");
   seleccionarBoton.addEventListener("click", acomodarInputs);
+  test();
 };
