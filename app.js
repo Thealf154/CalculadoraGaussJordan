@@ -184,5 +184,4 @@ window.onload = function () {
   calcularBoton.addEventListener("click", hacer_matriz);
   let seleccionarBoton = document.querySelector("#seleccionar");
   seleccionarBoton.addEventListener("click", acomodarInputs);
-  test();
 };
